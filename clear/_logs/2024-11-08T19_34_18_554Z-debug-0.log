@@ -1,0 +1,17 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.0
+2 info using node@v22.11.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\keven\Documents\dev\agro\front\front\.npmrc
+5 silly config load:file:C:\Users\keven\.npmrc
+6 silly config load:file:C:\Users\keven\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm
+8 verbose argv "--cache" "clear"
+9 verbose logfile logs-max:10 dir:C:\Users\keven\Documents\dev\agro\front\front\clear\_logs\2024-11-08T19_34_18_554Z-
+10 verbose logfile C:\Users\keven\Documents\dev\agro\front\front\clear\_logs\2024-11-08T19_34_18_554Z-debug-0.log
+11 verbose cwd C:\Users\keven\Documents\dev\agro\front\front
+12 verbose os Windows_NT 10.0.18362
+13 verbose node v22.11.0
+14 verbose npm  v10.9.0
+15 verbose exit 1
+16 verbose code 1

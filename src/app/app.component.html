@@ -1,0 +1,112 @@
+<div class="content">
+    <div class="content-nav">
+        <div class="content-nav-logo">
+            <p>Logo</p>
+        </div>
+        <nav>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Itens</a></li>
+            <li><a href="#">Users</a></li>
+        </nav>
+    </div>
+    <div class="content-btns">
+        <button (click)="showModalItem()" class="item"><i class="fa-solid fa-plus pointer"></i></button>
+        <button (click)="showModalUser()" class="user"><i class="fa-solid fa-user pointer"></i></button>
+    </div>
+    <div class="content-itens">
+        <div *ngFor="let item of itens" class="content-itens-item">
+            
+                <div class="content-itens-item-img">
+                    <img [src]="item.imageUrl" alt="">
+                </div>
+                <div class="content-itens-item-text">
+                    <p>{{item.name}}</p>
+                    <span class="red"><p>{{verifyDate(item.untilAt)}}</p></span>
+                    <!-- <span ><p>{{item.untilAt}}</p></span> -->
+                    <p *ngIf="item.offer">Last ofert: <span class="price">{{item.offer.value}} $</span></p>
+                    <p *ngIf="!item.offer">0 $</p>
+                    <button (click)="showModalOffer(item)">Offer</button>
+                </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog 
+[modal]="true"
+[(visible)]="visibleOffer" 
+[style]="{ width: 'auto'}" 
+[breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" 
+[maximizable]="false">
+    <form [formGroup]="formOffer" class="offer" (submit)="postOffer()">
+        <p>Made a Offer</p>
+        <div class="d-form">
+            <label for="userId">User Id</label>
+            <input formControlName="userId" id="userId" type="number">
+        </div>
+        <div class="d-form">
+            <label for="password">Password</label>
+            <input formControlName="pass" id="password" type="password">
+        </div>
+        <div class="d-form">
+            <label for="value">Offer value</label>
+            <input formControlName="value" id="value" type="number">
+        </div>
+        <span *ngIf="errorOffer">Something wrong, try again!</span>
+        <button [disabled]="!formOffer.valid">send</button>
+    </form>
+</p-dialog>
+
+<p-dialog 
+[modal]="true"
+[(visible)]="visibleUser" 
+[style]="{ width: 'auto'}" 
+[breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" 
+[maximizable]="false">
+    <form [formGroup]="formUser" class="user" (submit)="postUser()">
+        <p>New User</p>
+        <div class="d-form">
+            <label for="UserName">UserName</label>
+            <input formControlName="userName" id="UserName" type="text">
+        </div>
+        <div class="d-form">
+            <label for="password">Password</label>
+            <input formControlName="pass" id="password" type="password">
+        </div>
+        <span *ngIf="errorItem">Something wrong, try again!</span>
+        <span class="user" *ngIf="user">{{user.userName}}, id: {{user.id}}</span>
+        <button [disabled]="!formUser.valid">send</button>
+    </form>
+</p-dialog>
+
+<p-dialog 
+[modal]="true"
+[(visible)]="visibleItem" 
+[style]="{ width: 'auto'}" 
+[breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" 
+[maximizable]="false">
+    <form [formGroup]="formItem" class="item" (submit)="postItem()">
+        <p>New Item</p>
+        <div class="d-form">
+            <label for="ownerId">Owner Id</label>
+            <input formControlName="ownerId" id="ownerId" type="number">
+        </div>
+        <div class="d-form">
+            <label for="UserName">Item Name</label>
+            <input formControlName="name" id="UserName" type="text">
+        </div>
+        <div class="d-form">
+            <label for="password">Password</label>
+            <input formControlName="pass" id="password" type="password">
+        </div>
+        <div class="d-form">
+            <label for="date">Time</label>
+            <input formControlName="untilAt" id="date" type="date">
+        </div>
+        <div class="d-form">
+            <label for="file">Image Item</label>
+            <input (change)="selectFile($event)" id="file" type="file">
+        </div>
+        <span *ngIf="errorItem">Something wrong, try again!</span>
+        <button [disabled]="!formItem.valid">send</button>
+    </form>
+</p-dialog>
